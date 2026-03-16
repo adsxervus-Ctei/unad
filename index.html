@@ -254,6 +254,286 @@
 </head>
 <body>
 
+<!-- ════ SPLASH SCREEN ════ -->
+<div id="splash">
+  <div class="sp-bg"></div>
+  <div class="sp-particles" id="spParticles"></div>
+
+  <div class="sp-content">
+    <div class="sp-logo-wrap">
+      <div class="sp-logo-ring"></div>
+      <div class="sp-logo-ring sp-ring2"></div>
+      <div class="sp-logo-inner">📚</div>
+    </div>
+
+    <div class="sp-unad">Universidad Nacional Abierta y a Distancia</div>
+    <div class="sp-prog">Licenciatura en Educación Infantil · 2026</div>
+
+    <h1 class="sp-title">Construcción <em>Histórica</em><br/>de las Infancias</h1>
+
+    <div class="sp-divider"><span></span><span class="sp-div-dot"></span><span></span></div>
+
+    <p class="sp-intro">
+      ¿Cómo ha sido entendida la infancia a lo largo de la historia? Este proyecto académico 
+      recorre tres grandes épocas — la <strong>Edad Antigua</strong>, la <strong>Edad Media</strong> 
+      y la <strong>Edad Moderna</strong> — para analizar cómo las sociedades han construido, 
+      transformado y resignificado los conceptos de <em>niño, niña, niñez e infancias</em>.<br/><br/>
+      Desde los niños vistos como adultos en miniatura en Grecia y Roma, pasando por 
+      la integración temprana al trabajo en la Edad Media, hasta la visión de Rousseau 
+      que reconoce la infancia como una etapa natural con características propias, 
+      este recorrido nos invita a reflexionar sobre los <strong>desafíos actuales</strong> 
+      y el rol del educador como agente de cambio.
+    </p>
+
+    <div class="sp-team">
+      <span class="sp-team-label">Equipo de trabajo</span>
+      <div class="sp-avatars">
+        <div class="sp-av" style="background:linear-gradient(135deg,#e8712a,#f5a04a)">Y</div>
+        <div class="sp-av" style="background:linear-gradient(135deg,#2b6a9b,#3a7fc1)">K</div>
+        <div class="sp-av" style="background:linear-gradient(135deg,#4caf87,#7dd4b2)">E</div>
+        <div class="sp-av" style="background:linear-gradient(135deg,#f0a500,#f5c842)">D</div>
+        <div class="sp-av" style="background:linear-gradient(135deg,#9b2b6a,#c13a7f)">A</div>
+      </div>
+      <span class="sp-team-names">Yeimy · Keyla · Eliana · Dina · Alexandra</span>
+    </div>
+
+    <button class="sp-btn" onclick="closeSplash()">
+      <span>Explorar el Proyecto</span>
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M15 6l6 6-6 6"/></svg>
+    </button>
+
+    <div class="sp-skip" onclick="closeSplash()">Saltar introducción</div>
+  </div>
+</div>
+
+<style>
+  /* ── SPLASH BASE ── */
+  #splash {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  #splash.hide {
+    animation: splashOut .7s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  @keyframes splashOut {
+    0%   { opacity:1; transform:scale(1); }
+    60%  { opacity:1; transform:scale(1.04); }
+    100% { opacity:0; transform:scale(1.08); pointer-events:none; }
+  }
+
+  /* ── BACKGROUND ── */
+  .sp-bg {
+    position:absolute; inset:0;
+    background: linear-gradient(145deg, #0d1f35 0%, #1a3a5c 40%, #0f2540 70%, #1a2e10 100%);
+  }
+  .sp-bg::before {
+    content:''; position:absolute; inset:0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(43,106,155,.45) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 20%, rgba(240,165,0,.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 60% 85%, rgba(232,113,42,.18) 0%, transparent 45%);
+  }
+
+  /* ── PARTICLES ── */
+  .sp-particles { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+  .sp-particle {
+    position:absolute; border-radius:50%;
+    background:rgba(240,165,0,.6);
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) scale(1); opacity:.7; }
+    100% { transform: translateY(-110vh) scale(.3); opacity:0; }
+  }
+
+  /* ── CONTENT ── */
+  .sp-content {
+    position:relative; z-index:2;
+    max-width:680px; width:90%;
+    text-align:center;
+    padding:3rem 2.5rem;
+    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,.1);
+    box-shadow: 0 32px 80px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.1);
+    animation: spIn .9s cubic-bezier(0.34,1.56,0.64,1) both;
+    max-height:92vh; overflow-y:auto;
+    scrollbar-width:none;
+  }
+  .sp-content::-webkit-scrollbar{display:none}
+  @keyframes spIn {
+    from { opacity:0; transform:translateY(40px) scale(.95); }
+    to   { opacity:1; transform:translateY(0) scale(1); }
+  }
+
+  /* ── LOGO RING ── */
+  .sp-logo-wrap {
+    position:relative; width:90px; height:90px;
+    margin:0 auto 1.4rem; display:flex; align-items:center; justify-content:center;
+  }
+  .sp-logo-ring {
+    position:absolute; inset:0; border-radius:50%;
+    border:2px solid rgba(240,165,0,.5);
+    animation:spinRing 4s linear infinite;
+  }
+  .sp-ring2 {
+    inset:8px; border-color:rgba(43,106,155,.5);
+    animation-duration:6s; animation-direction:reverse;
+  }
+  @keyframes spinRing { to { transform:rotate(360deg); } }
+  .sp-logo-inner {
+    width:62px; height:62px; border-radius:50%;
+    background:linear-gradient(135deg,var(--azul,#2b6a9b),var(--dorado,#f0a500));
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.8rem;
+    box-shadow:0 8px 24px rgba(240,165,0,.3);
+    animation:logoPulse 3s ease-in-out infinite;
+  }
+  @keyframes logoPulse {
+    0%,100%{box-shadow:0 8px 24px rgba(240,165,0,.3)}
+    50%{box-shadow:0 8px 40px rgba(240,165,0,.6)}
+  }
+
+  /* ── TEXT ── */
+  .sp-unad {
+    font-family:'Baloo 2',cursive; font-weight:700;
+    font-size:.78rem; color:rgba(240,165,0,.9);
+    text-transform:uppercase; letter-spacing:2px;
+    margin-bottom:.2rem;
+  }
+  .sp-prog { font-size:.74rem; color:rgba(255,255,255,.45); font-weight:600; margin-bottom:1.2rem; }
+  .sp-title {
+    font-family:'Baloo 2',cursive; font-weight:800;
+    font-size:clamp(1.7rem,4vw,2.6rem);
+    color:#fff; line-height:1.2; margin-bottom:1.1rem;
+  }
+  .sp-title em { font-style:normal; color:#f0a500; }
+
+  /* ── DIVIDER ── */
+  .sp-divider {
+    display:flex; align-items:center; gap:.6rem;
+    justify-content:center; margin-bottom:1.2rem;
+  }
+  .sp-divider span:not(.sp-div-dot) {
+    height:1px; width:60px;
+    background:linear-gradient(90deg,transparent,rgba(240,165,0,.5));
+  }
+  .sp-divider span:first-child { transform:rotate(180deg); }
+  .sp-div-dot {
+    width:8px; height:8px; border-radius:50%;
+    background:#f0a500;
+    box-shadow:0 0 10px rgba(240,165,0,.7);
+    animation:dotGlow 2s ease-in-out infinite;
+  }
+  @keyframes dotGlow {
+    0%,100%{box-shadow:0 0 6px rgba(240,165,0,.5)}
+    50%{box-shadow:0 0 18px rgba(240,165,0,.9)}
+  }
+
+  /* ── INTRO TEXT ── */
+  .sp-intro {
+    font-family:'Quicksand',sans-serif;
+    color:rgba(255,255,255,.78); font-size:.92rem;
+    line-height:1.8; text-align:left;
+    background:rgba(0,0,0,.2);
+    border-left:3px solid #f0a500;
+    border-radius:0 12px 12px 0;
+    padding:1rem 1.2rem; margin-bottom:1.4rem;
+  }
+  .sp-intro strong { color:#f0a500; }
+  .sp-intro em { color:rgba(255,255,255,.95); font-style:normal; font-weight:700; }
+
+  /* ── TEAM ── */
+  .sp-team {
+    display:flex; flex-direction:column; align-items:center; gap:.55rem;
+    margin-bottom:1.8rem;
+  }
+  .sp-team-label {
+    font-size:.74rem; color:rgba(255,255,255,.45);
+    text-transform:uppercase; letter-spacing:1.5px; font-weight:700;
+  }
+  .sp-avatars { display:flex; gap:.5rem; }
+  .sp-av {
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Baloo 2',cursive; font-weight:800; font-size:1rem; color:#fff;
+    border:2px solid rgba(255,255,255,.2);
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+    transition:transform .2s;
+  }
+  .sp-av:hover { transform:translateY(-4px) scale(1.1); }
+  .sp-team-names {
+    font-size:.78rem; color:rgba(255,255,255,.55); font-weight:600;
+    letter-spacing:.5px;
+  }
+
+  /* ── CTA BUTTON ── */
+  .sp-btn {
+    display:inline-flex; align-items:center; gap:.7rem;
+    background:linear-gradient(135deg,#e8712a,#f0a500);
+    color:#fff; font-family:'Baloo 2',cursive; font-weight:800;
+    font-size:1.05rem; padding:.85rem 2.2rem;
+    border-radius:50px; border:none; cursor:pointer;
+    box-shadow:0 8px 28px rgba(232,113,42,.45);
+    transition:transform .25s, box-shadow .25s;
+    position:relative; overflow:hidden;
+    margin-bottom:.9rem;
+  }
+  .sp-btn::before {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+    border-radius:inherit;
+  }
+  .sp-btn svg { width:20px; height:20px; stroke:#fff; fill:none; stroke-width:2.5; transition:transform .25s; }
+  .sp-btn:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(232,113,42,.6); }
+  .sp-btn:hover svg { transform:translateX(4px); }
+
+  /* ── SKIP ── */
+  .sp-skip {
+    font-size:.76rem; color:rgba(255,255,255,.3);
+    cursor:pointer; font-weight:600;
+    transition:color .2s; letter-spacing:.5px;
+  }
+  .sp-skip:hover { color:rgba(255,255,255,.7); }
+
+  /* hide body scroll while splash is open */
+  body.splash-open { overflow:hidden; }
+</style>
+
+<script>
+  // Add particles
+  (function(){
+    const c = document.getElementById('spParticles');
+    if(!c) return;
+    for(let i=0;i<22;i++){
+      const p = document.createElement('div');
+      p.className='sp-particle';
+      const size = Math.random()*5+2;
+      p.style.cssText = [
+        'width:'+size+'px','height:'+size+'px',
+        'left:'+Math.random()*100+'%',
+        'bottom:'+(Math.random()*-20)+'%',
+        'animation-duration:'+(Math.random()*12+8)+'s',
+        'animation-delay:'+(Math.random()*8)+'s',
+        'opacity:'+(Math.random()*.6+.1)
+      ].join(';');
+      c.appendChild(p);
+    }
+  })();
+
+  document.body.classList.add('splash-open');
+
+  function closeSplash(){
+    const sp = document.getElementById('splash');
+    sp.classList.add('hide');
+    document.body.classList.remove('splash-open');
+    setTimeout(()=>{ sp.style.display='none'; }, 700);
+  }
+</script>
+
+
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="tb-left">
