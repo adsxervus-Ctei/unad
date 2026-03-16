@@ -154,7 +154,11 @@
     .era-card.antigua{border-top:5px solid var(--dorado)} .era-card.antigua h3{color:#a07000}
     .era-card.media{border-top:5px solid var(--azul)} .era-card.media h3{color:var(--azul)}
     .era-card.moderna{border-top:5px solid var(--naranja)} .era-card.moderna h3{color:var(--naranja)}
-    .mat-wrap{border-radius:var(--radio-xl);overflow:hidden;box-shadow:var(--sombra);border:2px solid var(--borde)}
+    .mat-wrap{border-radius:var(--radio-xl);overflow-x:auto;-webkit-overflow-scrolling:touch;box-shadow:var(--sombra);border:2px solid var(--borde)}
+    .mat-wrap table{min-width:820px}
+    .mat-scroll-hint{display:none;align-items:center;gap:.5rem;color:var(--azul);font-size:.8rem;font-weight:700;margin-bottom:.7rem;padding:.45rem 1rem;background:var(--azul-suave);border-radius:var(--radio-pill);width:fit-content}
+    .mat-scroll-hint svg{flex-shrink:0}
+    @media(max-width:768px){.mat-scroll-hint{display:flex}}
     table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--blanco)}
     thead tr{background:linear-gradient(90deg,var(--azul-oscuro),var(--azul))}
     thead th{padding:1.05rem 1.15rem;text-align:left;color:#fff;font-family:"Baloo 2",cursive;font-size:.9rem;font-weight:700}
@@ -171,9 +175,9 @@
 
     /* ── VIDEO ── */
     #video{background:var(--blanco)}
-    .vid-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:3rem;align-items:center;margin-top:2.4rem}
+    .vid-layout{display:grid;grid-template-columns:340px 1fr;gap:3rem;align-items:center;margin-top:2.4rem}
     /* Custom play overlay */
-    .vid-outer{position:relative;border-radius:var(--radio-xl);overflow:hidden;aspect-ratio:9/16;max-width:320px;background:var(--azul-oscuro);box-shadow:0 16px 48px rgba(43,106,155,.28)}
+    .vid-outer{position:relative;border-radius:var(--radio-xl);overflow:hidden;aspect-ratio:9/16;width:100%;max-width:340px;background:var(--azul-oscuro);box-shadow:0 16px 48px rgba(43,106,155,.28)}
     .vid-outer iframe{position:absolute;inset:0;width:100%;height:100%;border:none;z-index:1;opacity:0;transition:opacity .35s ease;pointer-events:none}
     .vid-outer.playing iframe{opacity:1;pointer-events:all}
     .vid-overlay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(135deg,rgba(26,74,114,.82),rgba(43,106,155,.6));transition:opacity .35s ease,transform .35s ease;cursor:pointer}
@@ -223,7 +227,7 @@
     .d1{transition-delay:.1s} .d2{transition-delay:.2s} .d3{transition-delay:.3s} .d4{transition-delay:.4s}
 
     @media(max-width:900px){
-      .vid-layout{grid-template-columns:1fr} .vid-outer{max-width:100%;aspect-ratio:16/9}
+      .vid-layout{grid-template-columns:1fr} .vid-outer{max-width:300px;aspect-ratio:9/16;margin:0 auto}
       .era-cards{grid-template-columns:1fr}
     }
     @media(max-width:768px){
@@ -485,7 +489,11 @@
         <p>1492 — 1789<br/>Rousseau: la infancia como etapa natural con características propias.</p>
       </div>
     </div>
-    <div class="mat-wrap reveal">
+    <div class="mat-scroll-hint">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M15 6l6 6-6 6"/></svg>
+        Desliza para ver la tabla completa
+      </div>
+      <div class="mat-wrap reveal">
       <table>
         <thead>
           <tr>
